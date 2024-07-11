@@ -32,6 +32,20 @@ ___
 
 ## Transformer Encoder
 
+Transformer Encoder 将Encoder Block 重复堆叠L次。接下来详细介绍Encoder Block：
+
+- [ ] Layer Norm
+- [ ] Multi-Head Attention
+- [ ] Dropout
+- [ ] MLP Block
+
+### Layer Norm
+
+
+
+
+
+
 ![encoder block](<../../Images/Transformer Encoder Block.png>)
 
 Encoder Block流程图截屏自B站@霹雳吧啦Wz，此处也向他的系列教学视频表示感谢~
