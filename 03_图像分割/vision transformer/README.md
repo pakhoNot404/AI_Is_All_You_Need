@@ -42,8 +42,11 @@ Transformer Encoder 将Encoder Block 重复堆叠L次。接下来详细介绍Enc
 ### Layer Norm
 
 
+BN是对一个batch数据的每个channel进行Norm处理，但LN是对单个数据的指定维度进行Norm处理与batch无关。
 
+为什么不使用直接BN呢，因为在RNN这类时序网络中，时序的长度并不是一个定值（网络深度不一定相同），比如每句话的长短都不一定相同，所有很难去使用BN
 
+### Multi-Head Attention
 
 
 ![encoder block](<../../Images/Transformer Encoder Block.png>)
