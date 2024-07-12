@@ -65,7 +65,7 @@ $$Attention(Q,K,V)=softmax(\frac{Q·K^T}{\sqrt{d_k}})V$$
 2. 然后a分别经过三个参数矩阵
 $W^q, W^k, W^v$参数共享，得到q，k，v；在代码中，这三个参数矩阵直接通过三个全连接层实现
 3. 接下来将q和k进行match，具体就是dot-product（点积）运算，并除以一个缩放因子
-$\sqrt{d}$
+$\sqrt{d}$，
 $\alpha_{1,i}=\frac{q^1\cdot{k^i}}{\sqrt{d}}$
 $\alpha_{2,i}=\frac{q^2\cdot{k^i}}{\sqrt{d}}$
 其中，d是对应k的维度（元素个数）。每个q都要与每个k做点积运算
@@ -96,6 +96,19 @@ $b_i$就越接近那个数值
 
 
 **接下来是Multi-Head self-Attention**
+
+> 为什么要用多头注意力机制呢？因为相关性或许不同,所以需要不同的q负责不同种类的相关性。与卷积中的组卷积比较像
+
+* 代码中直接将q，k，v进行均分处理给每个Head
+* 然后对每一个Head执行前面的Self-Attention操作，得到
+$b_{1,1}, b_{2,1} ...$
+* 接着对每个Head进行拼接，对第一个数字相同的进行拼接，即
+$b_{1,1}, b_{1,2} ...$，
+$b_{12,1}, b_{2,2} ...$
+* 然后采用一个
+$W^o$，对拼接后的多头b进一步融合
+
+![Multi-Head self-Attention](<../../Images/Multi-Head Self-Attention.png>)
 
 
 ![encoder block](<../../Images/Transformer Encoder Block.png>)
