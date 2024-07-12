@@ -62,7 +62,7 @@ $$Attention(Q,K,V)=softmax(\frac{Q·K^T}{\sqrt{d_k}})V$$
 **v**：value，可以认为是从输入a中学习到的信息
 
 1. 首先将输入送进Embedding层，映射到更高的维度上，x -> a
-2. 然后a分别经过三个参数矩阵$W^q, W^k, W^v$，参数共享，得到q，k，v；在代码中，这三个参数矩阵直接通过三个全连接层实现
+2. 然后a分别经过三个参数矩阵$W^q, W^k, W^v$参数共享，得到q，k，v；在代码中，这三个参数矩阵直接通过三个全连接层实现
 3. 接下来将q和k进行match，具体就是dot-product（点积）运算，并除以一个缩放因子$\sqrt{d}$，
 即$\alpha_{1,i}=\frac{q^1\cdot{k^i}}{\sqrt{d}}$
 $\alpha_{2,i}=\frac{q^2\cdot{k^i}}{\sqrt{d}}$其中，d是对应k的维度（元素个数）。每个q都要与每个k做点积运算
