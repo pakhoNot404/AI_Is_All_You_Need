@@ -50,7 +50,7 @@ ___
 
 ### Multi-Head Attention
 
-首先了解下什么是Self-Attention。$Attention(Q,K,V)=softmax(\frac{Q·K^T}{\sqrt{d_k}})V$
+首先了解下什么是Self-Attention。 $ Attention(Q,K,V)=softmax(\frac{Q·K^T}{\sqrt{d_k}})V $ 
 
 计算流程如下：
 
