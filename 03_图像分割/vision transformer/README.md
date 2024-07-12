@@ -64,12 +64,18 @@ $$Attention(Q,K,V)=softmax(\frac{Q·K^T}{\sqrt{d_k}})V$$
 1. 首先将输入送进Embedding层，映射到更高的维度上，x -> a
 2. 然后a分别经过三个参数矩阵
 $W^q, W^k, W^v$参数共享，得到q，k，v；在代码中，这三个参数矩阵直接通过三个全连接层实现
-3. 接下来将q和k进行match，具体就是dot-product（点积）运算，并除以一个缩放因子$\sqrt{d}$
-即$\alpha_{1,i}=\frac{q^1\cdot{k^i}}{\sqrt{d}}$
-$\alpha_{2,i}=\frac{q^2\cdot{k^i}}{\sqrt{d}}$其中，d是对应k的维度（元素个数）。每个q都要与每个k做点积运算
-1. 然后将每个$\alpha$经过softmax得到注意力分数,$\hat{\alpha}$使用softmax是因为进行点乘后的数值很大，会导致通过softmax后梯度变得很小。softmax是为了获取这一系列相似度值的占比（也就是权重值
-$\hat{\alpha}$）
-1. 最后一步将$\hat{\alpha}$与v相乘得到b,
+3. 接下来将q和k进行match，具体就是dot-product（点积）运算，并除以一个缩放因子
+$\sqrt{d}$
+$\alpha_{1,i}=\frac{q^1\cdot{k^i}}{\sqrt{d}}$
+$\alpha_{2,i}=\frac{q^2\cdot{k^i}}{\sqrt{d}}$
+其中，d是对应k的维度（元素个数）。每个q都要与每个k做点积运算
+4. 然后将每个
+$\alpha$经过softmax得到注意力分数,
+$\hat{\alpha}$使用softmax是因为进行点乘后的数值很大，会导致通过softmax后梯度变得很小。softmax是为了获取这一系列相似度值的占比（也就是权重值
+$\hat{\alpha}$
+）
+5. 最后一步将
+$\hat{\alpha}$与v相乘得到b,
 $b_1=\sum_i{\hat{\alpha}_{1,i}\times v^i}$。相关性越高的，
 $b_i$就越接近那个数值
 
