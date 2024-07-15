@@ -119,6 +119,7 @@ class Attention(nn.Module):
 class Mlp(nn.Module):
     """
     MLP as used in Vision Transformer, MLP-Mixer and related networks
+    hidden_features一般是输入的4倍
     """
     def __init__(self, in_features, hidden_features=None, out_features=None, act_layer=nn.GELU, drop=0.):
         super().__init__()
@@ -140,9 +141,9 @@ class Mlp(nn.Module):
 
 class Block(nn.Module):
     def __init__(self,
-                 dim,
+                 dim,  # 每个token的维度 
                  num_heads,
-                 mlp_ratio=4.,
+                 mlp_ratio=4.,  # mlp中隐藏层的倍数
                  qkv_bias=False,
                  qk_scale=None,
                  drop_ratio=0.,
