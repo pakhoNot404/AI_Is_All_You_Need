@@ -124,6 +124,26 @@ public static void bubbleSort(int[] arr) {
 
 ### 题目4：插入排序
 
+类似于往排好序的扑克牌中的插入新牌
+
+```java
+// 题目4 插入排序
+public static void insertSort(int[] arr) {
+    if (arr == null || arr.length < 2) {
+        return;
+    }
+
+    for (int i = 0; i < arr.length; i++) {
+        for (int pre = i-1; pre >= 0 && arr[pre]>arr[pre+1]; pre--) {
+            swap(arr, pre, pre + 1);
+        }
+
+    }
+
+
+}
+```
+
 
 
 ```java
